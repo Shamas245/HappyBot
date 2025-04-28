@@ -37,7 +37,7 @@
    - Test: “Bad word” (block), “I like cats” (allow).
  - **Help**: Find a list of bad words online.
 
- ### 4. Documentation: Guides and Slides (Majad Ali)
+ ### 4. Documentation: Guides and Slides (Majid Ali)
 
  - **Job**: Write instructions and make slides for the hackathon.
  - **To Do**:

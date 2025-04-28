@@ -1,5 +1,5 @@
  
-HappyBot
+#HappyBot
  A fun, safe app for kids to ask questions and get happy answers! Made for a hackathon with Gemini API, FastAPI, and Streamlit.
 
  ## What HappyBot Does

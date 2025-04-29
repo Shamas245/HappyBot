@@ -69,7 +69,7 @@
       ```
     - Make `.env`:
       ```bash
-      copy .env.example .env
+      copy .env .env
       ```
     - Add the Gemini API key (team leader will send it).
 

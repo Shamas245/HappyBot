@@ -1,33 +1,35 @@
 import requests
-import os
-from dotenv import load_dotenv
+from fastapi import FastAPI
+from config import load_gemini
 
 
-load_dotenv()
+app = FastAPI()
+load_gemini()
 
-GEMINI_KEY = os.environ.get('GEMINI_KEY')
 
-response = requests.post(
-    "https://api.aimlapi.com/v1/chat/completions",
-    headers={
-        "Content-Type": "application/json",
+@app.get('/chat')
+def ask(prompt: str):
+    response = requests.post(
+        "https://api.aimlapi.com/v1/chat/completions",
+        headers={
+            "Content-Type": "application/json",
 
-        # Insert your AIML API Key instead of <YOUR_AIMLAPI_KEY>:
-        "Authorization": f"Bearer {GEMINI_KEY}",
-        "Content-Type": "application/json"
-    },
-    json={
-        "model": "google/gemini-2.0-flash-exp",
-        "messages": [
-            {
-                "role": "user",
+            # Insert your AIML API Key instead of <YOUR_AIMLAPI_KEY>:
+            "Authorization": f"Bearer {load_gemini()}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": "google/gemini-2.0-flash-exp",
+            "messages": [
+                {
+                    "role": "user",
 
-                # Insert your question for the model here, instead of Hello:
-                "content": "How integrate FastAPI layout for Chat Safety Monitor"
-            }
-        ]
-    }
-)
+                    # Insert your question for the model here, instead of Hello:
+                    "content": f"{prompt}"
+                }
+            ]
+        }
+    )
 
-data = response.json()
-print(data)
+    data = response.json()
+    return data

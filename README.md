@@ -119,7 +119,7 @@ Special thanks to the hackathon organizers and community for the opportunity to 
 ## 📧 Contact
 **Team Lead**: Shamas Liaqat  
 **Email**: shamasliaqat245@gmail.com  
-**GitHub**: [yourusername](https://github.com/shamas245)
+**GitHub**: [Shamas245](https://github.com/shamas245)
 
 ---
 

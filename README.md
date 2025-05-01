@@ -2,7 +2,6 @@
 
 **Smart, Safe & Supportive Learning for All Ages**
 
-![Team Cover](./team_members.png) <!-- Replace with correct path to team image -->
 
 ---
 

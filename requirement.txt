@@ -1,0 +1,8 @@
+streamlit
+requests
+python-dotenv
+better-profanity
+groq
+fastapi
+pydantic
+uvicorn

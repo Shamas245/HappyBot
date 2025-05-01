@@ -1,25 +1,30 @@
 def detect_positive_themes(text: str) -> str:
-    """Detect positive themes based on specific keywords."""
+    """Detect the most relevant positive theme based on keyword frequency."""
     themes = {
-        "creativity": ["imagine", "creative", "build", "make", "design", "create"],
-        "curiosity": ["learn", "explore", "discover", "question", "wonder", "investigate"],
-        "kindness": ["help", "kind", "share", "care", "support", "love"],
-        "exploration": ["adventure", "journey", "explore", "travel", "discover", "seek"],
-        "reflection": ["reflect", "think", "contemplate", "consider", "ponder"],
-        "problem solving": ["solve", "resolve", "figure out", "troubleshoot", "challenge"],
-        "bravery": ["courage", "brave", "fearless", "risk", "adventure"],
-        "resilience": ["persist", "overcome", "endure", "strong", "bounce back"],
-        "empathy": ["understand", "sympathize", "care", "compassion", "relate"],
-        "teamwork": ["collaborate", "team", "work together", "help each other", "cooperate"]
+        "Creativity": ["imagine", "creative", "build", "make", "design", "create"],
+        "Curiosity": ["learn", "explore", "discover", "question", "wonder", "investigate"],
+        "Kindness": ["help", "kind", "share", "care", "support", "love"],
+        "Exploration": ["adventure", "journey", "explore", "travel", "discover", "seek"],
+        "Reflection": ["reflect", "think", "contemplate", "consider", "ponder"],
+        "Problem Solving": ["solve", "resolve", "figure out", "troubleshoot", "challenge"],
+        "Bravery": ["courage", "brave", "fearless", "risk", "adventure"],
+        "Resilience": ["persist", "overcome", "endure", "strong", "bounce back"],
+        "Empathy": ["understand", "sympathize", "care", "compassion", "relate"],
+        "Teamwork": ["collaborate", "team", "work together", "help each other", "cooperate"]
     }
 
-    # Lowercase the input text to make the search case-insensitive
     text = text.lower()
+    theme_scores = {}
 
-    # Check for the presence of keywords for each theme
-    for badge, keywords in themes.items():
-        if any(keyword in text for keyword in keywords):
-            return badge.capitalize()
+    for theme, keywords in themes.items():
+        score = sum(text.count(keyword) for keyword in keywords)
+        if score > 0:
+            theme_scores[theme] = score
 
-    # If no theme is detected, return None
-    return None
+    if not theme_scores:
+        return None  # no match
+
+    # Return theme with the highest score
+    most_relevant_theme = max(theme_scores, key=theme_scores.get)
+    return most_relevant_theme
+

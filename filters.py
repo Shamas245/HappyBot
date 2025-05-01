@@ -1,4 +1,5 @@
 from better_profanity import profanity
+import re
 
 # Load default profanity list
 profanity.load_censor_words()
@@ -24,13 +25,15 @@ UNSAFE_TOPICS = {
 
 
 def input_is_safe(user_input: str) -> bool:
-    """Check if the user input is appropriate for children/teens."""
     user_input_lower = user_input.lower()
 
     if profanity.contains_profanity(user_input):
         return False
 
-    return not any(topic in user_input_lower for topic in UNSAFE_TOPICS)
+    for topic in UNSAFE_TOPICS:
+        if re.search(rf'\b{re.escape(topic)}\b', user_input_lower):
+            return False
+    return True
 
 def output_is_safe(response: str) -> bool:
     """Check if the chatbot output is appropriate (same logic as input)."""
